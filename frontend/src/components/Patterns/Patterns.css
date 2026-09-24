@@ -1,0 +1,29 @@
+.plot-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+.patterns-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-6);
+  margin-top: var(--spacing-8);
+}
+
+.patterns-grid > * {
+  min-height: 400px;
+}
+
+.s11-section {
+  margin-top: var(--spacing-6);
+  min-height: 400px;
+}
+
+@media (max-width: 1024px) {
+  .patterns-grid {
+    grid-template-columns: 1fr;
+  }
+}

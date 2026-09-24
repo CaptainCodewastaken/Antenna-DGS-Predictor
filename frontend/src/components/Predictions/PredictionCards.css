@@ -1,0 +1,76 @@
+.prediction-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-6);
+  position: relative;
+}
+
+.prediction-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+}
+
+.prediction-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.metric-title {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-2);
+}
+
+.metric-value-container {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-2);
+}
+
+.metric-big {
+  font-family: var(--font-mono);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.freq-card .metric-big {
+  color: var(--accent-primary);
+  text-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.gain-card .metric-big {
+  color: var(--accent-secondary);
+  text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+.bw-card .metric-big {
+  color: var(--accent-success);
+  text-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.eff-card .metric-big {
+  color: var(--accent-warning);
+  text-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+}
+
+.metric-unit {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}

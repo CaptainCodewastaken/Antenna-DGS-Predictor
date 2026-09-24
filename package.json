@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "omniroute": "^3.8.50"
+  },
+  "scripts": {
+    "check:fast": "node floor-guard.mjs",
+    "check:task": "npm run check:fast && pytest --cov=backend && vitest run --coverage",
+    "check:full": "npm run check:task"
+  }
+}

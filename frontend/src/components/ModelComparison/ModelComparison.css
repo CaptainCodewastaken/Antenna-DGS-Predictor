@@ -1,0 +1,85 @@
+.model-arena-container {
+  margin-top: var(--spacing-12);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.expand-btn {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: var(--spacing-6);
+  padding: var(--spacing-3);
+  font-size: 1rem;
+}
+
+.model-arena-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  animation: slideDown var(--transition-bounce);
+  transform-origin: top;
+}
+
+.arena-row {
+  display: flex;
+  width: 100%;
+  gap: var(--spacing-6);
+}
+
+.charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.arena-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.arena-card h3 {
+  margin-top: 0;
+  margin-bottom: var(--spacing-4);
+  color: var(--text-secondary);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: var(--spacing-3);
+}
+
+.metrics-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.metrics-table th, .metrics-table td {
+  padding: var(--spacing-3);
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.metrics-table th {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.metrics-table td {
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+
+.metrics-table tr:hover td {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 1024px) {
+  .charts-row {
+    grid-template-columns: 1fr;
+  }
+}

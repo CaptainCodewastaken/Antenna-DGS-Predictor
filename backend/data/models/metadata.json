@@ -1,0 +1,16 @@
+{
+  "trained_at": "2026-09-24T18:15:35.974302",
+  "dataset_path": "backend/data/antenna_dataset.csv",
+  "n_train_samples": 8000,
+  "n_test_samples": 2000,
+  "models": [
+    "linear",
+    "ridge",
+    "lasso",
+    "knn",
+    "decision_tree",
+    "random_forest",
+    "xgboost",
+    "svr"
+  ]
+}

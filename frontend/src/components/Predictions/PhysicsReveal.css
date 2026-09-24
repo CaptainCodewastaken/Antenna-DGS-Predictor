@@ -1,0 +1,97 @@
+.physics-reveal-container {
+  margin-top: var(--spacing-6);
+  animation: slideDown var(--transition-bounce);
+  transform-origin: top;
+}
+
+.physics-reveal-card {
+  padding: var(--spacing-6);
+  border: 1px solid var(--accent-primary);
+  background: rgba(15, 23, 42, 0.85); /* Slightly darker */
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.1);
+}
+
+.physics-reveal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-6);
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: var(--spacing-4);
+}
+
+.physics-reveal-header h3 {
+  margin: 0;
+  color: var(--accent-primary);
+  font-family: var(--font-mono);
+  font-size: 1.125rem;
+}
+
+.physics-reveal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-8);
+}
+
+.physics-column h4 {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-4);
+}
+
+.equation-box, .circuit-box {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-4);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  border: 1px solid var(--glass-border);
+  margin-bottom: var(--spacing-4);
+}
+
+.equation-box p, .circuit-box p {
+  margin-bottom: var(--spacing-2);
+  color: var(--text-primary);
+}
+
+.equation-highlight {
+  margin-top: var(--spacing-4);
+  padding-top: var(--spacing-4);
+  border-top: 1px dashed var(--glass-border);
+}
+
+.equation-highlight strong {
+  color: var(--accent-success);
+  font-size: 1.125rem;
+}
+
+.circuit-box h5 {
+  margin: 0 0 var(--spacing-2) 0;
+  color: var(--accent-secondary);
+}
+
+.circuit-svg {
+  margin: var(--spacing-4) 0;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-2);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: scaleY(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .physics-reveal-grid {
+    grid-template-columns: 1fr;
+  }
+}
