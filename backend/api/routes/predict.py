@@ -1,5 +1,6 @@
 """Predict endpoint."""
 from fastapi import APIRouter, Depends
+from fastapi.concurrency import run_in_threadpool
 
 from backend.api.schemas import PredictRequest, PredictResponse
 from backend.api.dependencies import get_registry, ModelRegistry
@@ -9,7 +10,7 @@ from backend.physics_engine.types import AntennaConfig, SubstrateConfig, PatchCo
 router = APIRouter()
 
 @router.post("/predict", response_model=PredictResponse)
-def predict(request: PredictRequest, registry: ModelRegistry = Depends(get_registry)):
+async def predict(request: PredictRequest, registry: ModelRegistry = Depends(get_registry)):
     # Convert Pydantic request to physics Engine objects
     config = AntennaConfig(
         substrate=SubstrateConfig(**request.substrate.model_dump()),
@@ -19,7 +20,7 @@ def predict(request: PredictRequest, registry: ModelRegistry = Depends(get_regis
     )
     
     # Physics prediction
-    phys_metrics = calculate_antenna_metrics(config)
+    phys_metrics = await run_in_threadpool(calculate_antenna_metrics, config)
     
     # ML features construction (same logic as generate.py flatten_config)
     features = {
@@ -46,7 +47,7 @@ def predict(request: PredictRequest, registry: ModelRegistry = Depends(get_regis
         })
         
     # ML Prediction
-    ml_preds = registry.predict_all(features)
+    ml_preds = await run_in_threadpool(registry.predict_all, features)
     
     return PredictResponse(
         physics=phys_metrics,

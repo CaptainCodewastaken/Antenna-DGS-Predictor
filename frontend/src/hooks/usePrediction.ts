@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { predict } from '../api/client';
 import type { PredictResponse } from '../api/client';
 import type { AntennaConfig } from './useAntennaConfig';
@@ -7,31 +7,31 @@ export function usePrediction(config: AntennaConfig, debounceMs = 300) {
   const [data, setData] = useState<PredictResponse | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
-  const debounceTimer = useRef<number | null>(null);
 
   useEffect(() => {
-    if (debounceTimer.current) {
-      clearTimeout(debounceTimer.current);
-    }
-
-    setLoading(true);
-    
-    debounceTimer.current = window.setTimeout(async () => {
+    let isMounted = true;
+    const timer = setTimeout(async () => {
+      setLoading(true);
       try {
         const result = await predict(config);
-        setData(result);
-        setError(null);
+        if (isMounted) {
+          setData(result);
+          setError(null);
+        }
       } catch (err) {
-        setError(err instanceof Error ? err : new Error('Unknown error'));
+        if (isMounted) {
+          setError(err instanceof Error ? err : new Error('Unknown error'));
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     }, debounceMs);
 
     return () => {
-      if (debounceTimer.current) {
-        clearTimeout(debounceTimer.current);
-      }
+      isMounted = false;
+      clearTimeout(timer);
     };
   }, [config, debounceMs]);
 
