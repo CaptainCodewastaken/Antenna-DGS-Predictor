@@ -1,8 +1,3 @@
-# Nifty 50 Trading Bot / Antenna DGS Predictor
-
-Wait, the project was hijacked to build an Antenna DGS Predictor (Physics Under Glass)!
-(As per the user rules mapping, the minor_project context became an Antenna DGS physics + ML engine).
-
 # Antenna DGS Predictor
 
 **Physics Under Glass** is a full-stack application that accurately predicts the resonant frequency, gain, bandwidth, and efficiency of Defected Ground Structure (DGS) microstrip patch antennas using a hybrid physics-ML engine. 
@@ -11,6 +6,7 @@ It runs physics-based Cavity Model calculations as a baseline, and layers 8 diff
 
 ## Architecture
 
+*See [ADR-001: Architecture Migration](docs/decisions/ADR-001-Architecture-Migration.md) for the detailed design rationale.*
 1. **Frontend (Vite + React)**: 
    - A highly polished, "Physics Under Glass" dark-mode UI.
    - Real-time interactive Antenna Canvas (SVG).
