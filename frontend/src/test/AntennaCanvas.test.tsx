@@ -7,7 +7,7 @@ const mockConfig = {
   patch: { width_mm: 38, length_mm: 29 },
   feed: { width_mm: 3.0, inset_mm: 8.0 },
   slots: [
-    { width_mm: 10, length_mm: 2, x_mm: 0, y_mm: 5 }
+    { id: 'slot-1', width_mm: 10, length_mm: 2, x_mm: 0, y_mm: 5 }
   ]
 };
 

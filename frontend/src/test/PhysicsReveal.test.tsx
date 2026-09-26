@@ -51,7 +51,7 @@ describe('PhysicsReveal', () => {
   });
 
   it('renders cavity model equations when expanded', async () => {
-    const { container } = render(
+    render(
       <PhysicsReveal 
         config={mockConfig} 
         data={mockData} 

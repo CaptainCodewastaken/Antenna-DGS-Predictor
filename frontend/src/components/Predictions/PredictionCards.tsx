@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import { GlassCard } from '../ui/GlassCard';
 import { AnimatedNumber } from '../ui/AnimatedNumber';
 import { LoadingSpinner } from '../ui/LoadingSpinner';
@@ -12,7 +13,7 @@ interface PredictionCardsProps {
   selectedModel?: string; // 'physics_baseline' or model name like 'xgboost'
 }
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -22,7 +23,7 @@ const containerVariants = {
   }
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { type: 'spring', bounce: 0.3 } }
 };
