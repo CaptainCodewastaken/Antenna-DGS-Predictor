@@ -9,4 +9,4 @@ python-dotenv==1.2.2
 pytest==9.1.0
 pytest-cov==7.1.0
 httpx==0.28.1
-pyarrow==15.0.2
+pyarrow
