@@ -36,10 +36,14 @@ export const PredictionCards: React.FC<PredictionCardsProps> = ({ data, loading,
     }
     const ml = data.ml_predictions[selectedModel] as any; // Ignore TS type to get actual runtime keys
     
-    // ML returns bandwidth_fractional, so we need to compute bandwidth_hz dynamically
+    // ML might return bandwidth_fractional, so compute bandwidth_hz dynamically if needed
     const freq = ml.resonant_frequency_hz || base.resonant_frequency_hz;
-    const fractional_bw = ml.bandwidth_fractional || base.bandwidth_fractional;
-    const bandwidth_hz = fractional_bw * freq;
+    let bandwidth_hz = base.bandwidth_hz;
+    if (ml.bandwidth_fractional !== undefined) {
+      bandwidth_hz = ml.bandwidth_fractional * freq;
+    } else if (ml.bandwidth_hz !== undefined) {
+      bandwidth_hz = ml.bandwidth_hz;
+    }
     
     // Efficiency is only in base
     const efficiency = base.radiation_efficiency;
