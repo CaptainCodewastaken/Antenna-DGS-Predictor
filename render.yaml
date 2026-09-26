@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: antenna-dgs-api
+    env: python
+    buildCommand: "pip install -r requirements.txt && python -m backend.data_generator.generate --samples 10000 --seed 42 --output backend/data/antenna_dataset.csv && python -m backend.ml_models.train --data backend/data/antenna_dataset.csv"
+    startCommand: "uvicorn backend.api.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9

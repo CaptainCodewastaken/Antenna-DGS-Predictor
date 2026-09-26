@@ -66,7 +66,11 @@ The backend is built with FastAPI, Scikit-Learn, and XGBoost. It serves the ML p
    ```bash
    uvicorn backend.api.main:app --reload
    ```
-   *The backend will now be running at `http://127.0.0.1:8000`. You can view the API documentation at `http://127.0.0.1:8000/docs`. Keep this terminal window open.*
+   *(If you get an `[Errno 48] Address already in use` error, it means another process is using port 8000. Start it on a different port instead:)*
+   ```bash
+   uvicorn backend.api.main:app --reload --port 8001
+   ```
+   *The backend will now be running at `http://127.0.0.1:8000` (or your custom port). You can view the API documentation at `http://127.0.0.1:8000/docs`. Keep this terminal window open.*
 
 ---
 
@@ -76,18 +80,11 @@ The frontend is a Vite + React application with a highly polished "Physics Under
 
 1. **Open a new terminal window** (keep the backend running in the previous one).
 
-2. **Navigate to the frontend directory:**
+2. **Navigate to the frontend directory and start the server:**
+   *Important: You must be inside the `frontend` folder before running these commands!*
    ```bash
    cd frontend
-   ```
-
-3. **Install Node dependencies:**
-   ```bash
    npm install
-   ```
-
-4. **Start the development server:**
-   ```bash
    npm run dev
    ```
 
