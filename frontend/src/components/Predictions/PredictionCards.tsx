@@ -34,10 +34,21 @@ export const PredictionCards: React.FC<PredictionCardsProps> = ({ data, loading,
     if (selectedModel === 'physics_baseline') {
       return base;
     }
-    const ml = data.ml_predictions[selectedModel];
+    const ml = data.ml_predictions[selectedModel] as any; // Ignore TS type to get actual runtime keys
+    
+    // ML returns bandwidth_fractional, so we need to compute bandwidth_hz dynamically
+    const freq = ml.resonant_frequency_hz || base.resonant_frequency_hz;
+    const fractional_bw = ml.bandwidth_fractional || base.bandwidth_fractional;
+    const bandwidth_hz = fractional_bw * freq;
+    
+    // Efficiency is only in base
+    const efficiency = base.radiation_efficiency;
+
     return {
-      ...base,
-      ...ml // ml predictions (freq, gain) will override base
+      resonant_frequency_hz: freq,
+      gain_dbi: ml.gain_dbi || base.gain_dbi,
+      bandwidth_hz: bandwidth_hz,
+      radiation_efficiency: efficiency
     };
   };
 
