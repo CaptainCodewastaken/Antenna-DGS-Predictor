@@ -1,5 +1,4 @@
-import { act } from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { PhysicsReveal } from '../components/Predictions/PhysicsReveal';
 import { describe, it, expect, vi } from 'vitest';
 
@@ -52,15 +51,18 @@ describe('PhysicsReveal', () => {
   });
 
   it('renders cavity model equations when expanded', async () => {
-    await act(async () => {
-      render(
-        <PhysicsReveal 
-          config={mockConfig} 
-          data={mockData} 
-          expanded={true} 
-          onClose={() => {}} 
-        />
-      );
+    render(
+      <PhysicsReveal 
+        config={mockConfig} 
+        data={mockData} 
+        expanded={true} 
+        onClose={() => {}} 
+      />
+    );
+    
+    // Wait for async update to settle
+    await waitFor(() => {
+      expect(screen.getByText(/Physics Under Glass/i)).toBeInTheDocument();
     });
     
     // Check for base equations
@@ -73,15 +75,17 @@ describe('PhysicsReveal', () => {
   });
 
   it('shows no-slot message when slots are empty', async () => {
-    await act(async () => {
-      render(
-        <PhysicsReveal 
-          config={mockConfig} 
-          data={mockData} 
-          expanded={true} 
-          onClose={() => {}} 
-        />
-      );
+    render(
+      <PhysicsReveal 
+        config={mockConfig} 
+        data={mockData} 
+        expanded={true} 
+        onClose={() => {}} 
+      />
+    );
+    
+    await waitFor(() => {
+      expect(screen.getByText(/Add a slot to view the LC circuit/i)).toBeInTheDocument();
     });
     expect(screen.getByText(/Add a slot to view the LC circuit/i)).toBeInTheDocument();
   });
