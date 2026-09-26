@@ -1,3 +1,4 @@
+import { act } from 'react';
 import { render, screen } from '@testing-library/react';
 import { PhysicsReveal } from '../components/Predictions/PhysicsReveal';
 import { describe, it, expect, vi } from 'vitest';
@@ -51,14 +52,16 @@ describe('PhysicsReveal', () => {
   });
 
   it('renders cavity model equations when expanded', async () => {
-    render(
-      <PhysicsReveal 
-        config={mockConfig} 
-        data={mockData} 
-        expanded={true} 
-        onClose={() => {}} 
-      />
-    );
+    await act(async () => {
+      render(
+        <PhysicsReveal 
+          config={mockConfig} 
+          data={mockData} 
+          expanded={true} 
+          onClose={() => {}} 
+        />
+      );
+    });
     
     // Check for base equations
     expect(screen.getByText(/Physics Under Glass/i)).toBeInTheDocument();
@@ -70,14 +73,16 @@ describe('PhysicsReveal', () => {
   });
 
   it('shows no-slot message when slots are empty', async () => {
-    render(
-      <PhysicsReveal 
-        config={mockConfig} 
-        data={mockData} 
-        expanded={true} 
-        onClose={() => {}} 
-      />
-    );
+    await act(async () => {
+      render(
+        <PhysicsReveal 
+          config={mockConfig} 
+          data={mockData} 
+          expanded={true} 
+          onClose={() => {}} 
+        />
+      );
+    });
     expect(screen.getByText(/Add a slot to view the LC circuit/i)).toBeInTheDocument();
   });
 });
